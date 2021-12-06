@@ -20,8 +20,172 @@ The package includes all the following forms of documentation:
 
 - [X] **Installation:** Installation succeeds as documented.
 - [ ] **Functionality:** Any functional claims of the software been confirmed.
+
+Errors encountered in `ts_plot()`, `ts_xts()` and `ts_long()`. I am including the structure of the data frame I was working with in the code below:
+Errors with `ts_xts()` and `ts_long()`:
+
+```
+Conn_discharge_DO <- readNWISuv(
++   siteNumbers = "01193050",
++   parameterCd = c("00060", "00300"),
++   startDate = "2019-01-01",
++   endDate = "2021-01-01"
++ )
+> 
+> str(Conn_discharge_DO)
+'data.frame':	70519 obs. of  8 variables:
+ $ agency_cd       : chr  "USGS" "USGS" "USGS" "USGS" ...
+ $ site_no         : chr  "01193050" "01193050" "01193050" "01193050" ...
+ $ dateTime        : POSIXct, format: "2019-01-01 05:00:00" "2019-01-01 05:15:00" "2019-01-01 05:30:00" "2019-01-01 05:45:00" ...
+ $ X_00060_00000   : num  39200 41300 40400 40400 41100 43000 41800 42300 41700 42400 ...
+ $ X_00060_00000_cd: chr  "A" "A" "A" "A" ...
+ $ X_00300_00000   : num  13.9 13.9 13.9 14 14 14 14 14 14 14 ...
+ $ X_00300_00000_cd: chr  "A" "A" "A" "A" ...
+ $ tz_cd           : chr  "UTC" "UTC" "UTC" "UTC" ...
+ - attr(*, "url")= chr "https://nwis.waterservices.usgs.gov/nwis/iv/?site=01193050&format=waterml,1.1&ParameterCd=00060,00300&startDT=2"| __truncated__
+ - attr(*, "siteInfo")='data.frame':	1 obs. of  13 variables:
+  ..$ station_nm          : chr "CONNECTICUT RIVER AT MIDDLE HADDAM, CT"
+  ..$ site_no             : chr "01193050"
+  ..$ agency_cd           : chr "USGS"
+  ..$ timeZoneOffset      : chr "-05:00"
+  ..$ timeZoneAbbreviation: chr "EST"
+  ..$ dec_lat_va          : num 41.5
+  ..$ dec_lon_va          : num -72.6
+  ..$ srs                 : chr "EPSG:4326"
+  ..$ siteTypeCd          : chr "ST-TS"
+  ..$ hucCd               : chr "01080205"
+  ..$ stateCd             : chr "09"
+  ..$ countyCd            : chr "09007"
+  ..$ network             : chr "NWIS"
+ - attr(*, "variableInfo")='data.frame':	2 obs. of  7 variables:
+  ..$ variableCode       : chr [1:2] "00060" "00300"
+  ..$ variableName       : chr [1:2] "Streamflow, ft&#179;/s" "Dissolved oxygen, water, unfiltered, mg/L"
+  ..$ variableDescription: chr [1:2] "Discharge, cubic feet per second" "Dissolved oxygen, water, unfiltered, milligrams per liter"
+  ..$ valueType          : chr [1:2] "Derived Value" "Derived Value"
+  ..$ unit               : chr [1:2] "ft3/s" "mg/l"
+  ..$ options            : chr [1:2] "" ""
+  ..$ noDataValue        : logi [1:2] NA NA
+ - attr(*, "disclaimer")= chr "Provisional data are subject to revision. Go to http://waterdata.usgs.gov/nwis/help/?provisional for more information."
+ - attr(*, "statisticInfo")='data.frame':	1 obs. of  2 variables:
+  ..$ statisticCd  : chr "00000"
+  ..$ statisticName: chr ""
+ - attr(*, "queryTime")= POSIXct[1:1], format: "2021-12-06 11:53:57"
+> 
+> # Try viewing both parameters together
+> try(str(ts_xts(Conn_discharge_DO)))
+more than one [value] column detected after [time] - using the outermost.
+Are you using a wide data frame? To convert, use 'ts_long()'.
+
+[time]: 'dateTime' [value]: 'X_00300_00000' 
+Error : cannot allocate vector of size 4.5 Gb
+> try(str(ts_xts(ts_long(Conn_discharge_DO))))
+[id] columns left of [time] column: 'agency_cd', 'site_no'
+[time]: 'dateTime' 
+Error : 'value' column [value] is not numeric.
+```
+
+Errors with `ts_plot()`:
+```
+> character_date_dat <- data.frame(
++   DateTime = c(
++   "2011-11-11 11:11:11", "2012-12-12 12:12:12", "2021-09-25 20:07:00"
++   ),
++   Value = c(1, 2, 8)
++ )
+> try({ts_plot(character_date_dat)})
+[time]: 'DateTime' [value]: 'Value' 
+Error in colnamesInt(x, neworder, check_dups = FALSE) : 
+  argument specifying columns specify non existing column(s): cols[3]='Value'
+> # I am downloading hydrological data timeseries from the USGS. This is my most frequent way of accessing timeseries data. Data comes as a data frame.
+> Eno_discharge <- readNWISuv(
++   siteNumbers = "02085070",
++   parameterCd = "00060",
++   startDate = "2019-01-01",
++   endDate = "2021-01-01"
++ )
+> # View the structure of the data frame
+> str(Eno_discharge)
+'data.frame':	70267 obs. of  6 variables:
+ $ agency_cd       : chr  "USGS" "USGS" "USGS" "USGS" ...
+ $ site_no         : chr  "02085070" "02085070" "02085070" "02085070" ...
+ $ dateTime        : POSIXct, format: "2019-01-01 05:00:00" "2019-01-01 05:15:00" "2019-01-01 05:30:00" "2019-01-01 05:45:00" ...
+ $ X_00060_00000   : num  424 421 424 428 428 428 428 428 435 435 ...
+ $ X_00060_00000_cd: chr  "A" "A" "A" "A" ...
+ $ tz_cd           : chr  "UTC" "UTC" "UTC" "UTC" ...
+ - attr(*, "url")= chr "https://nwis.waterservices.usgs.gov/nwis/iv/?site=02085070&format=waterml,1.1&ParameterCd=00060&startDT=2019-01"| __truncated__
+ - attr(*, "siteInfo")='data.frame':	1 obs. of  13 variables:
+  ..$ station_nm          : chr "ENO RIVER NEAR DURHAM, NC"
+  ..$ site_no             : chr "02085070"
+  ..$ agency_cd           : chr "USGS"
+  ..$ timeZoneOffset      : chr "-05:00"
+  ..$ timeZoneAbbreviation: chr "EST"
+  ..$ dec_lat_va          : num 36.1
+  ..$ dec_lon_va          : num -78.9
+  ..$ srs                 : chr "EPSG:4326"
+  ..$ siteTypeCd          : chr "ST"
+  ..$ hucCd               : chr "03020201"
+  ..$ stateCd             : chr "37"
+  ..$ countyCd            : chr "37063"
+  ..$ network             : chr "NWIS"
+ - attr(*, "variableInfo")='data.frame':	1 obs. of  7 variables:
+  ..$ variableCode       : chr "00060"
+  ..$ variableName       : chr "Streamflow, ft&#179;/s"
+  ..$ variableDescription: chr "Discharge, cubic feet per second"
+  ..$ valueType          : chr "Derived Value"
+  ..$ unit               : chr "ft3/s"
+  ..$ options            : chr ""
+  ..$ noDataValue        : logi NA
+ - attr(*, "disclaimer")= chr "Provisional data are subject to revision. Go to http://waterdata.usgs.gov/nwis/help/?provisional for more information."
+ - attr(*, "statisticInfo")='data.frame':	1 obs. of  2 variables:
+  ..$ statisticCd  : chr "00000"
+  ..$ statisticName: chr ""
+ - attr(*, "queryTime")= POSIXct[1:1], format: "2021-12-06 11:59:00"
+> # Try viewing the discharge data using the ts_plot function
+> try({ts_plot(Eno_discharge)})
+[time]: 'dateTime' [value]: 'X_00060_00000' 
+Error in setnames(x, c(cid, ctime, cvalue), c("id", "time", "value")) : 
+  Items of 'old' not found in column names: [X_00060_00000]. Consider skip_absent=TRUE.
+> try({ts_plot(Eno_discharge, skip_absent=TRUE)})
+Error in FUN(X[[i]], ...) : ts_boxable(x) is not TRUE
+```
 - [X] **Performance:** Any performance claims of the software been confirmed.
 - [ ] **Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.
+
+```
+> library(testthat)
+> library(tsbox)
+> 
+> test_check("tsbox")
+Starting 2 test processes
+== Skipped tests ===============================================================
+* empty test (1)
+== Warnings ====================================================================
+-- Warning (test-ts_first_of_period.R:18:3): ts_first_of_period works ----------
+no non-missing arguments to min; returning Inf
+Backtrace:
+ 1. tsbox::ts_first_of_period(x)
+ 2. tsbox::ts_apply(x, dts_first_of_period)
+ 3. tsbox:::ts_apply_dts(ts_dts(x), fun, ...)
+ 4. tsbox:::fun(x, ...)
+ 8. base::NextMethod("[")
+== Failed tests ================================================================
+-- Error (test-ts_first_of_period.R:18:3): ts_first_of_period works ------------
+Error in `max(which(time <= smry$start)):min(which(time >= smry$end))`: result would be too long a vector
+Backtrace:
+    x
+ 1. \-tsbox::ts_first_of_period(x)
+ 2.   \-tsbox::ts_apply(x, dts_first_of_period)
+ 3.     \-tsbox:::ts_apply_dts(ts_dts(x), fun, ...)
+ 4.       \-tsbox:::fun(x, ...)
+ 5.         +-time[(max(which(time <= smry$start)):min(which(time >= smry$end)))]
+ 6.         +-base::`[.POSIXct`(...)
+ 7.         | \-base::.POSIXct(NextMethod("["), attr(x, "tzone"), oldClass(x))
+ 8.         \-base::NextMethod("[")
+[ FAIL 1 | WARN 1 | SKIP 1 | PASS 770 ]
+Error: Test failures
+Execution halted
+1 error x | 1 warning x | 0 notes √
+```
 - [X] **Packaging guidelines**: The package conforms to the rOpenSci packaging guidelines.
 
 Estimated hours spent reviewing: 7

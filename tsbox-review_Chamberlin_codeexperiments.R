@@ -37,7 +37,9 @@ Conn_discharge_DO <- readNWISuv(
 
 str(Conn_discharge_DO)
 
-# Try viewing both paramters together
+# Try viewing both parameters together
+try(str(ts_xts(Conn_discharge_DO)))
+try(str(ts_xts(ts_long(Conn_discharge_DO))))
 try(expr = {
   dygraph(ts_xts(Conn_discharge_DO)) %>% dyRangeSelector()
 }
@@ -73,6 +75,8 @@ try({dygraph(
 
 # Try viewing the discharge data using the ts_plot function
 try({ts_plot(Eno_discharge)})
+try({ts_plot(Eno_discharge, skip_absent=TRUE)})
+
 
 # Another issue I frequently run into is reading data from csv files to data frames where the DateTime is read in as a character string
 character_date_dat <- data.frame(
