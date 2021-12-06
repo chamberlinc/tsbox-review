@@ -25,7 +25,7 @@ Errors encountered in `ts_plot()`, `ts_xts()` and `ts_long()`. I am including th
 Errors with `ts_xts()` and `ts_long()`:
 
 ```
-Conn_discharge_DO <- readNWISuv(
+> Conn_discharge_DO <- dataRetrieval::readNWISuv(
 +   siteNumbers = "01193050",
 +   parameterCd = c("00060", "00300"),
 +   startDate = "2019-01-01",
@@ -97,7 +97,7 @@ Errors with `ts_plot()`:
 Error in colnamesInt(x, neworder, check_dups = FALSE) : 
   argument specifying columns specify non existing column(s): cols[3]='Value'
 > # I am downloading hydrological data timeseries from the USGS. This is my most frequent way of accessing timeseries data. Data comes as a data frame.
-> Eno_discharge <- readNWISuv(
+> Eno_discharge <- dataRetrieval::readNWISuv(
 +   siteNumbers = "02085070",
 +   parameterCd = "00060",
 +   startDate = "2019-01-01",
