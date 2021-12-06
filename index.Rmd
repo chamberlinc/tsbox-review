@@ -1,0 +1,331 @@
+---
+output:
+  html_document:
+    toc: yes
+    df_print: paged
+  html_notebook:
+    toc: yes
+    toc_float: yes
+editor_options:
+  chunk_output_type: inline
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+library(magrittr)
+library(devtools)
+```
+
+# `tsbox` - package review
+
+## **Reviewer:** [\@chamberlinc](https://github.com/chamberlinc)
+
+### Review Submitted:
+**`r cat(sprintf("**Last updated:** %s", Sys.Date()))`**
+
+***
+
+<br>
+
+This report contains documents associated with the review of **rOpenSci** submitted package:
+
+### **`tsbox`: ropensci/software-review**  issue [\#464](https://github.com/ropensci/onboarding/issues/).
+
+<br>
+
+## Package info
+
+**Description:**
+
+Time series toolkit with identical behavior for all
+  time series classes: 'ts','xts', 'data.frame', 'data.table', 'tibble', 'zoo',
+  'timeSeries', 'tsibble', 'tis' or 'irts'. Also converts reliably between these classes.
+
+**Author:** `r person("Christoph", "Sax", email = "christoph.sax@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7192-7044"))`
+
+**repo url:** <https://github.com/christophsax/tsbox>
+
+**website url:** <https://www.tsbox.help>
+
+## Review info
+
+
+#### See [reviewer guidelines](https://ropensci.github.io/dev_guide/reviewerguide.html) for further information on the rOpenSci review process.
+
+**key review checks:**
+
+- Does the code comply with **general principles in the [Mozilla reviewing guide](https://mozillascience.github.io/codeReview/review.html)**?
+> Yes
+
+- Does the package **comply with the [ROpenSci packaging guide](https://ropensci.github.io/dev_guide/building.html)**?
+> Yes
+
+- Are there **improvements** that could be made to the **code style?**
+> Style is all ok
+
+- Is there **code duplication** in the package that should be reduced?
+- Are there **user interface improvements** that could be made?
+- Are there **performance improvements** that could be made?
+- Is the [**documentation**](https://ropensci.github.io/dev_guide/building.html#documentation) (installation instructions/vignettes/examples/demos) **clear and sufficient**?
+
+Please be respectful and kind to the authors in your reviews. The rOpenSci [code of conduct](https://ropensci.github.io/dev_guide/policies.html#code-of-conduct) is mandatory for everyone involved in our review process.
+
+***
+
+### session info
+
+
+```{r sessionInfo}
+sessionInfo()
+```
+
+
+```{r pkg_dir, echo = F}
+pkg_dir <- "C:/Users/Cathy/Documents/PeerReviewing/tsbox/tsbox"
+```
+
+## Test installation
+
+### test local `tsbox` install:
+
+```{r test-local}
+try(install(pkg_dir, dependencies = T, build_vignettes = T))
+```
+
+```{r github-rm}
+remove.packages("tsbox")
+```
+#### **comments:**
+
+> Local install went without a hitch when I was not knitting the document - no errors or warnings. Errors and warnings that occur while knitting did not happen when just working through the document.
+
+***
+
+### test install of `tsbox` from GitHub with:
+
+```{r test-github}
+devtools::install_github("christophsax/tsbox", dependencies = T, build_vignettes = T)
+```
+
+#### **comments:**
+
+> Github install seemed to work correctly.
+
+***
+
+
+
+## Check package integrity
+
+### run checks on `tsbox` source:
+
+```{r check-checks}
+try(devtools::check(pkg_dir))
+```
+#### **comments:**
+
+> First time run, this produced error `Error in loadNamespace(name) : there is no package called 'srr'`. After installing `srr` package, 1 error and 1 warning were produced. and one test was skipped. Additionally, one check gave a warning: 'qpdf' is needed for checks on size reduction of PDFs. I have qpdf installed on my machine. Below is the printout:
+
+> library(testthat)
+> library(tsbox)
+> 
+> test_check("tsbox")
+Starting 2 test processes
+== Skipped tests ===============================================================
+* empty test (1)
+== Warnings ====================================================================
+-- Warning (test-ts_first_of_period.R:18:3): ts_first_of_period works ----------
+no non-missing arguments to min; returning Inf
+Backtrace:
+ 1. tsbox::ts_first_of_period(x)
+ 2. tsbox::ts_apply(x, dts_first_of_period)
+ 3. tsbox:::ts_apply_dts(ts_dts(x), fun, ...)
+ 4. tsbox:::fun(x, ...)
+ 8. base::NextMethod("[")
+== Failed tests ================================================================
+-- Error (test-ts_first_of_period.R:18:3): ts_first_of_period works ------------
+Error in `max(which(time <= smry$start)):min(which(time >= smry$end))`: result would be too long a vector
+Backtrace:
+    x
+ 1. \-tsbox::ts_first_of_period(x)
+ 2.   \-tsbox::ts_apply(x, dts_first_of_period)
+ 3.     \-tsbox:::ts_apply_dts(ts_dts(x), fun, ...)
+ 4.       \-tsbox:::fun(x, ...)
+ 5.         +-time[(max(which(time <= smry$start)):min(which(time >= smry$end)))]
+ 6.         +-base::`[.POSIXct`(...)
+ 7.         | \-base::.POSIXct(NextMethod("["), attr(x, "tzone"), oldClass(x))
+ 8.         \-base::NextMethod("[")
+[ FAIL 1 | WARN 1 | SKIP 1 | PASS 770 ]
+Error: Test failures
+Execution halted
+1 error x | 1 warning x | 0 notes √
+
+***
+
+### run tests on `tsbox` source:
+
+```{r check-tests}
+devtools::test(pkg_dir)
+```
+#### **comments:**
+
+> Again, there was one fail, one warning, and one skipped test. The warning was from ts_first_of_period, due to the timeseries existing of all NAs. The error was also for ts_first_of_period, that 'result would be too long a vector'. The skipped test was for tsibble back-conversion because it appears as an empty test. 
+
+***
+
+
+### check `tsbox` for goodpractice:
+
+```{r test-goodpractice}
+goodpractice::gp(pkg_dir)
+```
+#### **comments:**
+
+> Returned 174 instances of lines greater than 80 characters. A quick scan of a few of these files indicates this is regularly on the lines that begin with  `@srrstats` .
+
+***
+
+## Check package metadata files
+
+### inspect
+
+- #### [README](https://github.com/christophsax/tsbox)
+- #### [DESCRIPTION](https://github.com/christophsax/tsbox/blob/master/DESCRIPTION)
+- #### [NAMESPACE](https://github.com/christophsax/tsbox/blob/master/NAMESPACE)
+
+### spell check
+
+```{r spell-check}
+devtools::spell_check(pkg_dir)
+```
+
+#### **comments:**
+
+> Metadata files look ok to me. I think the ReadMe file does a good job of demonstrating the package's capabilities without being overwhelming in detail.
+
+***
+
+## Check documentation
+
+online documentation: **<https://www.tsbox.help>**
+
+* Is the [documentation](https://ropensci.github.io/dev_guide/building.html#documentation) (installation instructions/vignettes/examples/demos) clear and sufficient?
+
+### test `tsbox` function help files:
+
+```{r test-help}
+help(package = "tsbox")
+```
+
+#### **comments:**
+
+> URL 'help/library/tsbox/html/00Index.html' not found.
+The documentation at the link provided gives a good range of demonstrations and examples. I think it is sufficient. 
+
+***
+
+### test `tsbox` vignettes:
+
+```{r test-vignettes}
+vignette(package = "tsbox")
+```
+
+#### **comments:**
+
+> no vignettes found
+
+***
+
+## Test functionality:
+
+- Are there **user interface improvements** that could be made?
+- Are there **performance improvements** that could be made?
+
+```{r free-style}
+library("tsbox")
+```
+
+```{r parse-functions}
+exports <-ls("package:tsbox")
+exports
+```
+
+<!-- experiment with package functions -->
+
+```{r exp-chunk}
+source("./tsbox-review_Chamberlin_codeexperiments.R")
+
+```
+
+#### **comments:**
+
+> I'm impressed that the commands are quite simple and work well for simple timeseries. When using a timeseries data frame of one variable everything worked very well. Trying to convert a data frame of several variables seemed to be more difficult though, and it wasn't clear to me that it is possible to specify which column in the data frame I want to convert. After prompting by messages in ts_xts that there were more than one column detected, I tried converting the data using ts_long(), however it seemed to be trying to pivot some of the identifier columns which were not numeric and gave an error. Once I pivoted the dataframe using pivot_longer, I was able to plot, convert, and scale the data.
+
+> I'm not sure I understand how the ts_plot function is supposed to work - I provided data frames with both POSIXct and character formatting for date/times and got different errors for each.
+
+> For the character timestamps: 
+`[time]: 'DateTime' [value]: 'Value' 
+Error in colnamesInt(x, neworder, check_dups = FALSE) : 
+  argument specifying columns specify non existing column(s): cols[3]='Value'`
+  
+> For the POSIXct timestamps:
+`[time]: 'dateTime' [value]: 'X_00060_00000' 
+Error in setnames(x, c(cid, ctime, cvalue), c("id", "time", "value")) : 
+  Items of 'old' not found in column names: [X_00060_00000]. Consider skip_absent=TRUE.`
+  
+> When including skip_absent=TRUE:
+`Error in FUN(X[[i]], ...) : ts_boxable(x) is not TRUE` 
+
+
+***
+
+## Inspect code:
+
+- Does the package **comply with the [ROpenSci packaging guide](https://ropensci.github.io/dev_guide/building.html)**?
+    * good [function & variable naming?](https://ropensci.github.io/dev_guide/building.html#function-and-argument-naming)
+    * good [dependency management](https://ropensci.github.io/dev_guide/building.html#package-dependencies)?
+- Are there **improvements** that could be made to the [**code style?**](https://ropensci.github.io/dev_guide/building.html#code-style)
+- Is there **code duplication** in the package that should be reduced?
+
+```{r inspect-code}
+pkgreviewr::pkgreview_print_source("tsbox")
+```
+**\* might not be suitable for large packages with many exported functions**
+
+
+<br>
+<br>
+
+#### **comments:**
+
+> The function namings are intuitive. Dependecies seem to be well handled.
+
+
+## Review test suite:
+
+See guidance on [testing](https://ropensci.github.io/dev_guide/building.html#testing) for further details.
+
+### test coverage
+
+```{r pkg_coverage}
+try(covr::package_coverage(pkg_dir))
+
+```
+
+### inspect [tests](https://github.com/christophsax/tsbox/blob/master/tests/testthat)
+
+
+#### **comments:**
+
+> Did not review.
+
+
+***
