@@ -97,27 +97,28 @@ The package includes all the following forms of documentation:
     ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] Starting up...                          
     ## | [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] Starting up...                          
     ## / [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] Starting up...                          
-    ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] @ arithmetic                            
-    ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] @ arithmetic, auto                      
+    ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] Starting up...                          
+    ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] Starting up...                          
     ## | [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] @ arithmetic, auto                      
     ## / [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] @ arithmetic, auto                      
     ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] @ arithmetic, auto                      
-    ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ] @ arithmetic, auto                      
+    ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ] @ arithmetic, auto                      
     ## | [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ] @ arithmetic, auto                      
-    ## / [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ] @ arithmetic, auto                      
-    ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ] @ arithmetic, auto                      
+    ## / [ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ] @ arithmetic, auto                      
+    ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
     ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
     ## | [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
     ## / [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
     ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
     ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
-    ## | [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ] @ arithmetic, auto                      
+    ## | [ FAIL 0 | WARN 0 | SKIP 0 | PASS 5 ] @ arithmetic, auto                      
     ##                                                                                 
-    ## v |         6 | arithmetic [1.6s]                                               
+    ## v |         6 | arithmetic [1.5s]                                               
     ## 
     ## / [ FAIL 0 | WARN 0 | SKIP 0 | PASS 6 ] @ auto                                  
     ## - [ FAIL 0 | WARN 0 | SKIP 0 | PASS 6 ] @ auto                                  
     ## \ [ FAIL 0 | WARN 0 | SKIP 0 | PASS 6 ] @ auto, date_utils                      
+    ## | [ FAIL 1 | WARN 0 | SKIP 0 | PASS 7 ] @ auto, date_utils, defects             
     ##                                                                                 
     ## x | 1       3 | defects [0.2s]                                                  
     ## --------------------------------------------------------------------------------
@@ -132,11 +133,12 @@ The package includes all the following forms of documentation:
     ##  7. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## | [ FAIL 1 | WARN 0 | SKIP 0 | PASS 9 ] @ auto, date_utils                      
     ## / [ FAIL 1 | WARN 0 | SKIP 0 | PASS 9 ] @ auto, date_utils                      
-    ## - [ FAIL 1 | WARN 0 | SKIP 0 | PASS 10 ] @ auto, date_utils, dirty              
+    ## - [ FAIL 1 | WARN 0 | SKIP 0 | PASS 9 ] @ auto, date_utils                      
+    ## \ [ FAIL 1 | WARN 0 | SKIP 0 | PASS 9 ] @ auto, date_utils, dirty               
+    ## | [ FAIL 1 | WARN 0 | SKIP 0 | PASS 14 ] @ auto, date_utils, dirty, edge        
     ##                                                                                 
-    ## x | 1       2 | auto [2.4s]                                                     
+    ## x | 1       2 | auto [2.5s]                                                     
     ## --------------------------------------------------------------------------------
     ## Error (test-auto.R:35:5): two way conversion
     ## Error in `UseMethod("ts_dts")`: no applicable method for 'ts_dts' applied to an object of class "ts"
@@ -149,18 +151,17 @@ The package includes all the following forms of documentation:
     ##  14. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## \ [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge              
-    ## | [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge              
-    ## / [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge, error_handli
-    ## - [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge, error_handli
+    ## / [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge              
+    ## - [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge              
     ## \ [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge, error_handli
+    ## | [ FAIL 2 | WARN 0 | SKIP 0 | PASS 14 ] @ date_utils, dirty, edge, error_handli
     ##                                                                                 
     ## v |        16 | high_freq [0.7s]                                                
     ## 
-    ## | [ FAIL 2 | WARN 0 | SKIP 0 | PASS 33 ] @ date_utils, dirty, edge, error_handli
-    ## / [ FAIL 2 | WARN 0 | SKIP 0 | PASS 34 ] @ date_utils, dirty, edge, error_handli
+    ## / [ FAIL 2 | WARN 0 | SKIP 0 | PASS 36 ] @ date_utils, dirty, edge, error_handli
+    ## - [ FAIL 2 | WARN 0 | SKIP 0 | PASS 37 ] @ date_utils, dirty, edge, error_handli
     ##                                                                                 
-    ## x | 1       5 | irregular [0.3s]                                                
+    ## x | 1       5 | irregular [0.2s]                                                
     ## --------------------------------------------------------------------------------
     ## Error (test-irregular.R:34:3): universal functions work with irregular series
     ## Error in `UseMethod("ts_dts")`: no applicable method for 'ts_dts' applied to an object of class "data.frame"
@@ -173,23 +174,23 @@ The package includes all the following forms of documentation:
     ##  6. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## - [ FAIL 3 | WARN 0 | SKIP 0 | PASS 50 ] @ date_utils, dirty, edge, error_handli
-    ## \ [ FAIL 3 | WARN 0 | SKIP 0 | PASS 50 ] @ date_utils, dirty, edge, error_handli
+    ## \ [ FAIL 3 | WARN 0 | SKIP 0 | PASS 52 ] @ date_utils, dirty, edge, error_handli
+    ## | [ FAIL 3 | WARN 0 | SKIP 0 | PASS 52 ] @ date_utils, dirty, edge, error_handli
     ##                                                                                 
     ## v |         4 | issues [0.2s]                                                   
     ## 
-    ## | [ FAIL 3 | WARN 0 | SKIP 0 | PASS 59 ] @ date_utils, dirty, edge, error_handli
-    ## / [ FAIL 3 | WARN 0 | SKIP 0 | PASS 59 ] @ date_utils, dirty, edge, error_handli
+    ## / [ FAIL 3 | WARN 0 | SKIP 0 | PASS 60 ] @ date_utils, dirty, edge, error_handli
+    ## - [ FAIL 3 | WARN 0 | SKIP 0 | PASS 60 ] @ date_utils, dirty, edge, error_handli
     ##                                                                                 
-    ## v |        82 | edge [3.4s]                                                     
+    ## v |        82 | edge [3.2s]                                                     
     ## 
-    ## - [ FAIL 3 | WARN 0 | SKIP 0 | PASS 140 ] @ date_utils, dirty, error_handling, m
-    ## \ [ FAIL 3 | WARN 0 | SKIP 0 | PASS 140 ] @ date_utils, dirty, error_handling, m
+    ## \ [ FAIL 3 | WARN 0 | SKIP 0 | PASS 139 ] @ date_utils, dirty, error_handling, m
+    ## | [ FAIL 3 | WARN 0 | SKIP 0 | PASS 139 ] @ date_utils, dirty, error_handling, m
     ##                                                                                 
     ## v |         2 | non_heuristic [0.2s]                                            
     ## 
-    ## | [ FAIL 3 | WARN 0 | SKIP 0 | PASS 146 ] @ date_utils, dirty, error_handling, m
-    ## / [ FAIL 3 | WARN 0 | SKIP 0 | PASS 146 ] @ date_utils, dirty, error_handling, m
+    ## / [ FAIL 3 | WARN 0 | SKIP 0 | PASS 145 ] @ date_utils, dirty, error_handling, m
+    ## - [ FAIL 3 | WARN 0 | SKIP 0 | PASS 146 ] @ date_utils, dirty, error_handling, m
     ##                                                                                 
     ## x | 3       3 | nonstandard_cnames [0.4s]                                       
     ## --------------------------------------------------------------------------------
@@ -224,53 +225,67 @@ The package includes all the following forms of documentation:
     ##  6. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 154 ] @ date_utils, dirty, error_handling, m
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 154 ] @ date_utils, dirty, error_handling, m
-    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 155 ] @ date_utils, dirty, error_handling, m
-    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 156 ] @ date_utils, dirty, error_handling, m
-    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 158 ] @ date_utils, dirty, error_handling, m
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 153 ] @ date_utils, dirty, error_handling, m
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 154 ] @ date_utils, dirty, error_handling, m
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 155 ] @ date_utils, dirty, error_handling, m
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 156 ] @ date_utils, dirty, error_handling, m
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 157 ] @ date_utils, dirty, error_handling, m
     ##                                                                                 
     ## v |        39 | missing [3.1s]                                                  
     ## 
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 186 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 188 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 188 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
     ## v |        12 | time_conversion [0.2s]                                          
     ## 
-    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 203 ] @ date_utils, dirty, error_handling, n
-    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 203 ] @ date_utils, dirty, error_handling, n
-    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 210 ] @ date_utils, dirty, error_handling, n
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 248 ] @ date_utils, dirty, error_handling, n
-    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 250 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 207 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 207 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 215 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 239 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 248 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 250 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 251 ] @ date_utils, dirty, error_handling, n
     ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 252 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 260 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 260 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 262 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 297 ] @ date_utils, dirty, error_handling, n
     ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 339 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
-    ## v |       180 | subannual [4.5s]                                                
+    ## v |       180 | subannual [5.2s]                                                
     ## 
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 359 ] @ date_utils, dirty, error_handling, n
-    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 359 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 358 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 358 ] @ date_utils, dirty, error_handling, n
     ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 359 ] @ date_utils, dirty, error_handling, n
     ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 360 ] @ date_utils, dirty, error_handling, n
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 360 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 365 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 365 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
-    ## v |         6 | ts_ [4.0s]                                                      
+    ## v |         6 | ts_ [5.0s]                                                      
     ## 
-    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 362 ] @ date_utils, dirty, error_handling, n
-    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 362 ] @ date_utils, dirty, error_handling, n
-    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 365 ] @ date_utils, dirty, error_handling, n
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 366 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 366 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 366 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 367 ] @ date_utils, dirty, error_handling, n
     ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 368 ] @ date_utils, dirty, error_handling, n
-    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 370 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 372 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 375 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
     ## v |         3 | ts_chain [0.5s]                                                 
     ## 
-    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 371 ] @ date_utils, dirty, error_handling, n
-    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 371 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 376 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 376 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
     ## v |         1 | ts_default                                                      
     ## 
-    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 374 ] @ date_utils, dirty, error_handling, n
-    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 375 ] @ date_utils, dirty, error_handling, n
-    ## - [ FAIL 7 | WARN 0 | SKIP 0 | PASS 377 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 6 | WARN 0 | SKIP 0 | PASS 379 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 6 | WARN 0 | SKIP 0 | PASS 379 ] @ date_utils, dirty, error_handling, n
+    ##                                                                                 
+    ## v |        16 | ts_bind [1.6s]                                                  
+    ## 
+    ## \ [ FAIL 6 | WARN 0 | SKIP 0 | PASS 380 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 6 | WARN 0 | SKIP 0 | PASS 380 ] @ date_utils, dirty, error_handling, n
+    ## / [ FAIL 7 | WARN 0 | SKIP 0 | PASS 380 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 7 | WARN 0 | SKIP 0 | PASS 380 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
     ## x | 1       1 | ts_first_of_period [0.3s]                                       
     ## --------------------------------------------------------------------------------
@@ -284,21 +299,14 @@ The package includes all the following forms of documentation:
     ##  3. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## \ [ FAIL 7 | WARN 0 | SKIP 0 | PASS 380 ] @ date_utils, dirty, error_handling, n
-    ## | [ FAIL 7 | WARN 0 | SKIP 0 | PASS 380 ] @ date_utils, dirty, error_handling, n
-    ##                                                                                 
-    ## v |        16 | ts_bind [1.5s]                                                  
-    ## 
+    ## \ [ FAIL 7 | WARN 0 | SKIP 0 | PASS 381 ] @ date_utils, dirty, error_handling, n
+    ## | [ FAIL 7 | WARN 0 | SKIP 0 | PASS 381 ] @ date_utils, dirty, error_handling, n
     ## / [ FAIL 7 | WARN 0 | SKIP 0 | PASS 381 ] @ date_utils, dirty, error_handling, n
     ## - [ FAIL 7 | WARN 0 | SKIP 0 | PASS 381 ] @ date_utils, dirty, error_handling, n
     ## \ [ FAIL 7 | WARN 0 | SKIP 0 | PASS 381 ] @ date_utils, dirty, error_handling, n
     ## | [ FAIL 7 | WARN 0 | SKIP 0 | PASS 382 ] @ date_utils, dirty, error_handling, n
-    ## / [ FAIL 7 | WARN 0 | SKIP 0 | PASS 383 ] @ date_utils, dirty, error_handling, n
-    ## - [ FAIL 7 | WARN 0 | SKIP 0 | PASS 384 ] @ date_utils, dirty, error_handling, n
-    ## \ [ FAIL 7 | WARN 0 | SKIP 0 | PASS 385 ] @ date_utils, dirty, error_handling, n
-    ## | [ FAIL 7 | WARN 0 | SKIP 0 | PASS 386 ] @ date_utils, dirty, error_handling, n
     ##                                                                                 
-    ## x | 1       7 | ts_frequency [1.1s]                                             
+    ## x | 1       7 | ts_frequency [1.2s]                                             
     ## --------------------------------------------------------------------------------
     ## Error (test-ts_frequency.R:11:3): ts_frequency handles na.rm correctly
     ## Error in `UseMethod("ts_dts")`: no applicable method for 'ts_dts' applied to an object of class "ts"
@@ -310,15 +318,11 @@ The package includes all the following forms of documentation:
     ##  3. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## / [ FAIL 8 | WARN 0 | SKIP 0 | PASS 398 ] @ date_utils, dirty, error_handling, n
-    ## - [ FAIL 8 | WARN 0 | SKIP 0 | PASS 398 ] @ date_utils, dirty, error_handling, n
-    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 401 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 8 | WARN 0 | SKIP 0 | PASS 392 ] @ date_utils, dirty, error_handling, n
+    ## - [ FAIL 8 | WARN 0 | SKIP 0 | PASS 392 ] @ date_utils, dirty, error_handling, n
+    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 399 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
-    ## v |        12 | ts_lag [1.4s]                                                   
-    ## 
-    ## | [ FAIL 10 | WARN 0 | SKIP 0 | PASS 402 ] @ date_utils, dirty, error_handling, 
-    ##                                                                                 
-    ## x | 2       3 | ts_long_wide [0.4s]                                             
+    ## x | 2       3 | ts_long_wide [0.5s]                                             
     ## --------------------------------------------------------------------------------
     ## Error (test-ts_long_wide.R:2:3): ts_long returns correct class.
     ## Error in `UseMethod("ts_dts")`: no applicable method for 'ts_dts' applied to an object of class "c('data.table', 'data.frame')"
@@ -341,23 +345,31 @@ The package includes all the following forms of documentation:
     ##  8. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## / [ FAIL 10 | WARN 0 | SKIP 0 | PASS 403 ] @ date_utils, dirty, error_handling, 
-    ## - [ FAIL 10 | WARN 0 | SKIP 0 | PASS 403 ] @ date_utils, dirty, error_handling, 
-    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 403 ] @ date_utils, dirty, error_handling, 
+    ## | [ FAIL 10 | WARN 0 | SKIP 0 | PASS 401 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 10 | WARN 0 | SKIP 0 | PASS 401 ] @ date_utils, dirty, error_handling, 
+    ## - [ FAIL 10 | WARN 0 | SKIP 0 | PASS 401 ] @ date_utils, dirty, error_handling, 
+    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 402 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
-    ## v |         3 | ts_na_omit                                                      
+    ## v |         3 | ts_na_omit [0.1s]                                               
     ## 
+    ## | [ FAIL 10 | WARN 0 | SKIP 0 | PASS 405 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 10 | WARN 0 | SKIP 0 | PASS 405 ] @ date_utils, dirty, error_handling, 
+    ##                                                                                 
+    ## v |        12 | ts_lag [1.8s]                                                   
+    ## 
+    ## - [ FAIL 10 | WARN 0 | SKIP 0 | PASS 406 ] @ date_utils, dirty, error_handling, 
+    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 406 ] @ date_utils, dirty, error_handling, 
     ## | [ FAIL 10 | WARN 0 | SKIP 0 | PASS 406 ] @ date_utils, dirty, error_handling, 
-    ## / [ FAIL 10 | WARN 0 | SKIP 0 | PASS 406 ] @ date_utils, dirty, error_handling, 
-    ## - [ FAIL 10 | WARN 0 | SKIP 0 | PASS 407 ] @ date_utils, dirty, error_handling, 
-    ##                                                                                 
-    ## v |         1 | ts_plot [0.2s]                                                  
-    ## 
-    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 410 ] @ date_utils, dirty, error_handling, 
-    ## | [ FAIL 10 | WARN 0 | SKIP 0 | PASS 410 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 10 | WARN 0 | SKIP 0 | PASS 408 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
     ## v |         4 | ts_pick [0.3s]                                                  
     ## 
+    ## - [ FAIL 10 | WARN 0 | SKIP 0 | PASS 410 ] @ date_utils, dirty, error_handling, 
+    ## \ [ FAIL 10 | WARN 0 | SKIP 0 | PASS 410 ] @ date_utils, dirty, error_handling, 
+    ##                                                                                 
+    ## v |         1 | ts_plot [0.3s]                                                  
+    ## 
+    ## | [ FAIL 10 | WARN 0 | SKIP 0 | PASS 411 ] @ date_utils, dirty, error_handling, 
     ## / [ FAIL 10 | WARN 0 | SKIP 0 | PASS 411 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
     ## x | 1       1 | ts_scale                                                        
@@ -378,10 +390,10 @@ The package includes all the following forms of documentation:
     ##                                                                                 
     ## v |         7 | ts_regular [0.3s]                                               
     ## 
-    ## | [ FAIL 11 | WARN 0 | SKIP 0 | PASS 420 ] @ date_utils, dirty, error_handling, 
-    ## / [ FAIL 11 | WARN 0 | SKIP 0 | PASS 420 ] @ date_utils, dirty, error_handling, 
-    ## - [ FAIL 11 | WARN 0 | SKIP 0 | PASS 422 ] @ date_utils, dirty, error_handling, 
-    ## \ [ FAIL 11 | WARN 0 | SKIP 0 | PASS 426 ] @ date_utils, dirty, error_handling, 
+    ## | [ FAIL 11 | WARN 0 | SKIP 0 | PASS 419 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 11 | WARN 0 | SKIP 0 | PASS 419 ] @ date_utils, dirty, error_handling, 
+    ## - [ FAIL 11 | WARN 0 | SKIP 0 | PASS 421 ] @ date_utils, dirty, error_handling, 
+    ## \ [ FAIL 11 | WARN 0 | SKIP 0 | PASS 424 ] @ date_utils, dirty, error_handling, 
     ## | [ FAIL 11 | WARN 0 | SKIP 0 | PASS 429 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
     ## x | 1       1 | tslist [0.3s]                                                   
@@ -399,10 +411,10 @@ The package includes all the following forms of documentation:
     ##  12. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## / [ FAIL 12 | WARN 0 | SKIP 0 | PASS 430 ] @ date_utils, dirty, error_handling, 
-    ## - [ FAIL 12 | WARN 0 | SKIP 0 | PASS 430 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 12 | WARN 0 | SKIP 0 | PASS 429 ] @ date_utils, dirty, error_handling, 
+    ## - [ FAIL 12 | WARN 0 | SKIP 0 | PASS 429 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
-    ## x | 1       0 | tzone                                                           
+    ## x | 1       0 | tzone [0.1s]                                                    
     ## --------------------------------------------------------------------------------
     ## Error (test-tzone.R:16:3): operations do not depend on time zone
     ## Error in `UseMethod("ts_dts")`: no applicable method for 'ts_dts' applied to an object of class "ts"
@@ -415,11 +427,12 @@ The package includes all the following forms of documentation:
     ##  11. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## \ [ FAIL 13 | WARN 0 | SKIP 0 | PASS 433 ] @ date_utils, dirty, error_handling, 
-    ## | [ FAIL 13 | WARN 0 | SKIP 0 | PASS 433 ] @ date_utils, dirty, error_handling, 
-    ## / [ FAIL 14 | WARN 0 | SKIP 0 | PASS 434 ] @ date_utils, dirty, error_handling, 
+    ## \ [ FAIL 13 | WARN 0 | SKIP 0 | PASS 430 ] @ date_utils, dirty, error_handling, 
+    ## | [ FAIL 13 | WARN 0 | SKIP 0 | PASS 430 ] @ date_utils, dirty, error_handling, 
+    ## / [ FAIL 13 | WARN 0 | SKIP 0 | PASS 432 ] @ date_utils, dirty, error_handling, 
+    ## - [ FAIL 14 | WARN 0 | SKIP 0 | PASS 434 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
-    ## x | 1      15 | ts_span [1.3s]                                                  
+    ## x | 1      15 | ts_span [1.6s]                                                  
     ## --------------------------------------------------------------------------------
     ## Error (test-ts_span.R:76:3): extending by NA works for different frequencies
     ## Error in `UseMethod("ts_dts")`: no applicable method for 'ts_dts' applied to an object of class "ts"
@@ -432,11 +445,11 @@ The package includes all the following forms of documentation:
     ##  13. tsbox FUN(X[[i]], ...)
     ## --------------------------------------------------------------------------------
     ## 
-    ## - [ FAIL 14 | WARN 0 | SKIP 0 | PASS 435 ] @ date_utils, dirty, error_handling, 
     ## \ [ FAIL 14 | WARN 0 | SKIP 0 | PASS 435 ] @ date_utils, dirty, error_handling, 
+    ## | [ FAIL 14 | WARN 0 | SKIP 0 | PASS 435 ] @ date_utils, dirty, error_handling, 
     ##                                                                                 
     ## == Results =====================================================================
-    ## Duration: 18.9 s
+    ## Duration: 20.5 s
     ## 
     ## [ FAIL 14 | WARN 0 | SKIP 0 | PASS 435 ]
     ## == Terminated early ============================================================
